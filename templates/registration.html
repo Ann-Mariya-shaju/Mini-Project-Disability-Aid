@@ -63,7 +63,7 @@
         .form-group label {
             display: block;
             font-weight: bold;
-            color: rgb(16, 16, 16); /* White color for labels */
+            color: rgb(9, 9, 10); /* White color for labels */
         }
 
         .form-group input,
@@ -71,9 +71,9 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #546cbb06;
             border-radius: 5px;
-            color: #333; /* Default color for input text */
+            color: #0b0b0b; /* Default color for input text */
         }
 
         .error-message {
@@ -94,6 +94,8 @@
             padding: 15px 20px;
             cursor: pointer;
         }
+        
+
     </style>
 </head>
 
@@ -102,7 +104,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="{% static '/index.html' %}"><span></span></a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="{% static '/index.html' %}"><span>Disabilty Aid</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -112,7 +114,7 @@
           <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
           <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>-->
-          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+          <!--<li><a class="nav-link scrollto" href="index.html#team">Team</a></li>-->
          <!---- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -135,7 +137,12 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="registration.html" class="get-started-btn scrollto">Registration</a>
+      <!--<a href="registration.html" class="get-started-btn scrollto">Registration</a>-->
+    {% if user.is_authenticated %}
+    <a href="logout" class="btn btn-primary ml-lg-3">Logout</a>
+    {% else %}
+    <a href="login.html" class="btn btn-primary ml-lg-3">Login/Register</a>
+    {% endif %}
     </div>
   </header><!-- End Header -->
 
@@ -146,6 +153,9 @@
                 <h2>Sign Up</h2>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    
+                  
+
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
@@ -177,39 +187,56 @@
                         <span id="confirm_password-error" class="error-message"></span>
                         <span id="password-match-error" class="error-message"></span>
                     </div>
-                   <!--- <div class="form-group">
-                        <label for="phone-number">Phone Number:</label>
-                        <input type="tel" id="phone-number" name="phone-number" required>
+                   <div class="form-group">
+                        <label for="phone_number">Phone Number:</label>
+                        <input type="tel" id="phone_number" name="phone_number" required>
                         <span id="phone-number-error" class="error-message"></span>
-                    </div>-->
+                    </div>
                    <!---- <div class="form-group">
                         <label for="address">Address:</label>
                         <textarea id="address" name="address" required></textarea>
                         <span id="address-error" class="error-message"></span>
                     </div>-->
-                   <!--- <div class="form-group">
-                        <label for="medical-certificate">Medical Certificate (JPG only):</label>
-                        <input type="file" id="medical-certificate" name="medical-certificate" accept=".jpg" required>
+                <div class="form-group">
+                        <label for="medical_certificate">Medical Certificate (JPG only):</label>
+                        <input type="file" name="medical_certificate">
+                        <!--<input type="file" id="medical_certificate" name="medical_certificate" accept=".jpg" required>-->
                         <span id="medical-certificate-error" class="error-message"></span>
-                    </div>-->
+                    </div>
                     
-                  <!---- <div class="form-group">
-                        <label style="display: block;">user_type:</label>
-                        <input type="radio" id="userRadio" name="user_type" value="user">
-                        <label for="userRadio">User</label>
-                        <input type="radio" id="panchayatRadio" name="user_type" value="panchayat">
-                        <label for="panchayatRadio">Panchayat</label>-->
-                        <div class="form-group">
+                    
+                    <div id="guardianOptions">
+                        <style>
+                            .black-text {
+                                color: rgb(9, 5, 5);
+                            }
+                        </style>
+                        
+                        <!-- Apply the CSS class to the label -->
+                        <label for="guardianType" class="black-text">Select Guardian Type:</label>
+                        <select id="guardianType" name="guardian_type">
+                            <option value="not selected">Not Selected</option>
+                            <option value="father">Father</option>
+                            <option value="mother">Mother</option>
+                            <option value="other">Other</option>
+                        
+                        </select>
+                    </div>
+                    
+                       
+                     <!---- <div class="form-group">
                             <label for="userTypeDropdown">Select user_type:</label>
-                            <select id="userTypeDropdown" name="user_type">
-                                <option value="user">user</option>
-                                <option value="panchayat">panchayat</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="submit-btn">Sign Up</button>
+                            <input class="inpiut100" type="radio" id="userRadio" name="user_type" value="user">
+						    <label for="userRadio">User</label>
+						    <input type="radio" id="panchayatRadio" name="user_type" value="panchayat">
+						    <label for="panchayatRadio">Panchayat</label>
+                        </div>-->
+
+                        
+                     <button type="submit" class="submit-btn">Sign Up</button>
                     <span id="success-message" class="success-message"></span>
                        <span id="post-error" class="error-message"></span>
-                       <p class="signup" style="color: rgba(255, 238, 0, 0.537);">Already have an account? Log in here. <a href="{% url 'login' %}" style="color: blue;">login</a></p>
+                       <p class="signup" style="color: rgba(0, 17, 255, 0.775);">Already have an account? Log in here. <a href="{% url 'login' %}" style="color: rgb(4, 2, 14);">login</a></p>
                     </div>
                     <!--<button type="submit" class="submit-btn">Sign Up</button>
                     <span id="success-message" class="success-message"></span>-->
@@ -230,34 +257,24 @@
     <script src="{% static '/vendor/php-email-form/validate.js' %}"></script>
     
     <script>
-        // Function to update error message for the email field
-        function updateEmailErrorMessage(message) {
-            const errorElement = document.getElementById('email-error');
-            errorElement.textContent = message;
-        }
-    
-        // Function to handle input in the email field
-        function validateEmail() {
-            const email = document.getElementById('email').value;
-            
-            // Convert the email to lowercase before validation
-            const lowercaseEmail = email.toLowerCase();
-    
-            // Regular expression for email validation
-            const emailPattern = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    
-            // Check if the lowercase email matches the pattern
-            if (!emailPattern.test(lowercaseEmail)) {
-                updateEmailErrorMessage('Please enter a valid email address with lowercase letters only');
-            } else {
-                // If the email is valid, clear the error message
-                updateEmailErrorMessage('');
-            }
-        }
-    
-        // Add input event listener to the email field
-        const emailField = document.getElementById('email');
-        emailField.addEventListener('input', validateEmail);
+const emailField = document.getElementById("email");
+const emailError = document.getElementById("email-error");
+
+emailField.addEventListener("input", function () {
+  const emailValue = emailField.value;
+
+  // Check if email contains capital letters
+  if (/[A-Z]/.test(emailValue)) {
+    emailError.textContent = "Email should not contain capital letters";
+  } else {
+    // Check if email format is valid
+    if (/^[a-zA-Z0-9._%+-]+@(gmail\.com|mca\.ajce\.in|yahoo\.com|ajce\.in)$/.test(emailValue)) {
+      emailError.textContent = ""; // Valid email
+    } else {
+      emailError.textContent = "Invalid email format";
+    }
+}
+});
     </script>
     
 
@@ -302,44 +319,47 @@
     <!-- End real-time username validation script -->
 
     <!-- Real-time phone number validation script -->
-   <!---- <script>
+    <script>
         // Function to update error message for the phone number field
         function updatePhoneNumberErrorMessage(message) {
             const errorElement = document.getElementById('phone-number-error');
             errorElement.textContent = message;
         }
-
+    
         // Function to handle input in the phone number field
         function handlePhoneNumberInput() {
-            const phoneNumber = document.getElementById('phone-number').value;
-
-            // Check if the phone number contains only digits
-            if (!/^\d+$/.test(phoneNumber)) {
-                updatePhoneNumberErrorMessage('Phone number must contain only digits');
-                return;
+            let phoneNumber = document.getElementById('phone-number').value;
+    
+            // Remove any non-digit characters (e.g., letters)
+            phoneNumber = phoneNumber.replace(/\D/g, '');
+    
+            // Ensure that the phone number has at least 10 digits
+            if (phoneNumber.length < 10) {
+                updatePhoneNumberErrorMessage('Phone number must have at least 10 digits');
+            } else {
+                updatePhoneNumberErrorMessage('');
             }
-
-            // Check if the phone number is exactly 10 digits long
-            if (phoneNumber.length !== 10) {
-                updatePhoneNumberErrorMessage('Phone number must be 10 digits long');
-                return;
+    
+            // Restrict the phone number to a maximum of 10 digits
+            if (phoneNumber.length > 10) {
+                phoneNumber = phoneNumber.slice(0, 10);
             }
-
+    
             // Check if the phone number starts with 9, 8, 7, or 6
             const firstDigit = phoneNumber.charAt(0);
             if (!['9', '8', '7', '6'].includes(firstDigit)) {
                 updatePhoneNumberErrorMessage('Phone number must start with 9, 8, 7, or 6');
-                return;
             }
-
-            // If all checks pass, clear the error message
-            updatePhoneNumberErrorMessage('');
+    
+            // Update the phone number field with the sanitized value
+            document.getElementById('phone-number').value = phoneNumber;
         }
-
+    
         // Add input event listener to the phone number field
         const phoneNumberField = document.getElementById('phone-number');
         phoneNumberField.addEventListener('input', handlePhoneNumberInput);
-    </script>-->
+    </script>
+    
     <!-- End real-time phone number validation script -->
 
     <!-- Real-time password validation script -->
@@ -460,7 +480,7 @@
     <!-- End real-time address validation script -->
 
     <!-- Real-time medical certificate validation script -->
-   <!---- <script>
+    <script>
         // Function to update error message for the medical certificate field
         function updateMedicalCertificateErrorMessage(message) {
             const errorElement = document.getElementById('medical-certificate-error');
@@ -491,7 +511,7 @@
         // Add input event listener to the medical certificate field
         const medicalCertificateField = document.getElementById('medical-certificate');
         medicalCertificateField.addEventListener('input', handleMedicalCertificateInput);
-    </script>-->
+    </script>
     <!-- End real-time medical certificate validation script -->
 
     <!-- Template Main JS File -->
