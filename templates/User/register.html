@@ -1,0 +1,38 @@
+{% extends "login.html" %}
+{% block body %}
+<form action="/user_register_post" method="post" class="form-box" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="row">
+
+<div class="col-12 mb-3">
+    Profile Pic :
+    <input type="file" class="form-control" name="f1">
+  </div>
+
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t1" placeholder="Name">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t2" placeholder="Email">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t3" placeholder="Phone">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t4" placeholder="Place">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t5" placeholder="Post">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t6" placeholder="Pin">
+  </div>
+<div class="col-12 mb-3">
+    <input type="text" class="form-control" name="t7" placeholder="Password">
+  </div>
+     <div class="col-12">
+                <input type="submit" value="Login" class="btn btn-primary">
+              </div>
+            </div>
+</form>
+{% endblock %}

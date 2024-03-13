@@ -1,338 +1,275 @@
-{% load static %}
-<!DOCTYPE html>
+<!-- /*
+* Template Name: Learner
+* Template Author: Untree.co
+* Tempalte URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="/static/favicon.png">
 
-  <title>Gp Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
 
-  <!-- Favicons -->
-  <link href="{% static '/img/favicon.png' %}" rel="icon">
-  <link href="{% static '/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="{% static '/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' %}" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{% static '/vendor/aos/aos.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static '/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-  <!-- Template Main CSS File -->
-  <link href="{% static '/css/style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/animate.min.css">
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/static/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/static/fonts/icomoon/style.css">
+  <link rel="stylesheet" href="/static/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/static/css/aos.css">
+  <link rel="stylesheet" href="/static/css/style.css">
 
-  <!-- =======================================================
-  * Template Name: Gp
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  <style>
-    body{
-      margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-image: url('signupimg.jpg'); /* Replace with your own image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .signup-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px; /* Increased padding for better visual appeal */
-            background-color: rgba(224, 232, 238, 0.322); /* Slightly transparent background */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .signup-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left; /* Left-align labels and inputs */
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: rgb(5, 0, 9); /* White color for labels */
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            color: #333; /* Default color for input text */
-        }
-
-        .error-message {
-            color: #a21f08;
-            font-size: 12px;
-        }
-
-        .success-message {
-            color: #27ae60;
-            font-size: 12px;
-        }
-
-        .submit-btn {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 15px 20px;
-            cursor: pointer;
-        }
-    
-</style>
+  <title>Disability Aid</title>
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-lg-between">
-
-      <h1 class="logo me-auto me-lg-0"><a href="{% static '/index.html' %}"><span>DISABILITY AID</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>-->
-          <!--<li><a class="nav-link scrollto" href="index.html#team">Team</a></li>-->
-          <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>-->
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-           
-      <!--<a href="registration.html" class="get-started-btn scrollto">Registration</a>-->
-    {% if user.is_authenticated %}
-    <a href="logout" class="btn btn-primary ml-lg-3">Logout</a>
-    {% else %}
-    <a href="registration.html" class="btn btn-primary ml-lg-3">Login/Register</a>
-    {% endif %}
+  <div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
       </div>
     </div>
-  </header><!-- End Header -->
+    <div class="site-mobile-menu-body"></div>
+  </div>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center justify-content-center">
-    <div class="container" data-aos="fade-up">
-      <body>
-        <br><br><br><br>
-        <div class="signup-container">
-            
-            <h2>Sign In</h2>
-            <form action="" method="POST">
-              {% csrf_token %}
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="username" id="username" name="username" required>
-                    <span id="username-error" class="error-message"></span>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <span id="password-error" class="error-message"></span>
-                </div>
-                <button type="submit" class="submit-btn">Sign In</button>
-                <span id="success-message" class="success-message"></span>
-            </form>
-           <!-- <p class="signup" style="color: rgba(255, 255, 0, 0.351);">Not have an account? register in here. <a href="{% url 'registration' %}" style="color: blue;">register</a></p>-->
-           <p><a href="{% url 'password_reset' %}" class="link" style="color: rgba(2, 19, 55, 0.912);">Forgot Password</a></p>
-           <!--- <p class="signup">Not have an account? Register in here.<a href="{% url 'login' %}">register</a></p>-->
+
+  
+  <nav class="site-nav mb-5">
+    <div class="pb-2 top-bar mb-3">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-lg-9">
+            <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block">Have a questions?</span></a> 
+            <a href="#" class="small mr-3"><span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block">10 20 123 456</span></a> 
+            <a href="#" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">info@mydomain.com</span></a> 
+          </div>
+
+          <div class="col-6 col-lg-3 text-right">
+            <a href="#aaa" class="small mr-3">
+              <span class="icon-lock"></span>
+              Login/Register
+            </a>
+{#            <a href="register.html" class="small">#}
+{#              <span class="icon-person"></span>#}
+{#              Register#}
+{#            </a>#}
+          </div>
+
         </div>
-    
-  </div>
-  </div>
+      </div>
+    </div>
+    <div class="sticky-nav js-sticky-header">
+      <div class="container position-relative">
+        <div class="site-navigation text-center">
+          <a href="" class="logo menu-absolute m-0">Disability Aid<span class="text-primary">.</span></a>
 
-        
-    
-       
-  </section><!-- End Hero -->
-  <!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="footer-top">
+          <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
+{#            <li><a href="index.html">Home</a></li>#}
+{#            <li class="has-children">#}
+{#              <a href="#">Dropdown</a>#}
+{#              <ul class="dropdown">#}
+{#                <li><a href="elements.html">Elements</a></li>#}
+{#                <li class="has-children">#}
+{#                  <a href="#">Menu Two</a>#}
+{#                  <ul class="dropdown">#}
+{#                    <li><a href="#">Sub Menu One</a></li>#}
+{#                    <li><a href="#">Sub Menu Two</a></li>#}
+{#                    <li><a href="#">Sub Menu Three</a></li>#}
+{#                  </ul>#}
+{#                </li>#}
+{#                <li><a href="#">Menu Three</a></li>#}
+{#              </ul>#}
+{#            </li>#}
+{#            <li><a href="staff.html">Our Staff</a></li>#}
+{#            <li><a href="news.html">News</a></li>#}
+{#            <li><a href="gallery.html">Gallery</a></li>#}
+{#            <li><a href="about.html">About</a></li>#}
+{#            <li class="active"><a href="contact.html">Contact</a></li>#}
+          </ul>
+
+{#          <a href="#aaa" class="btn-book btn btn-secondary btn-sm menu-absolute">Login</a>#}
+
+          <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
+            <span></span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+
+  <div class="untree_co-hero inner-page overlay" style="background-image: url('/static/images/img-school-5-min.jpg');">
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-12">
+          <div class="row justify-content-center ">
+            <div class="col-lg-6 text-center ">
+              <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">DISABILITY AID</h1>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-info">
-            <h3>Disability Aid<span>.</span></h3>
-            <p>
-              <br><br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> disability@gmail.com<br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
           </div>
         </div>
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
 
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
+  </div> <!-- /.untree_co-hero -->
 
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Treatment</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Communication</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Education</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Empowerment</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Support</a></li>
-          </ul>
-        </div>
+<div style="height: 200px;" id="aaa"></div>
 
-        <div class="col-lg-4 col-md-6 footer-newsletter">
-          <h4></h4>
-          <p>Equal access with knowledge which is accessible for everyone</p>
-          <form action="" method="post">
-            <input type="email" name="email"><input type="submit" value="Subscribe">
+  <div class="untree_co-section">
+    <div class="container">
+
+      <div class="row mb-5 justify-content-center">
+        <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
+        {% block body %}
+          <form action="/login_post" method="post" class="form-box">
+              {% csrf_token %}
+            <div class="row">
+
+              <div class="col-12 mb-3">
+                <input type="text" class="form-control" name="usn" placeholder="Email">
+              </div>
+              <div class="col-12 mb-3">
+                <input type="password" class="form-control" name="psw" placeholder="Password">
+              </div>
+
+              <div class="col-12 mb-3">
+                <label class="control control--checkbox">
+                  <span class="caption">Remember me</span>
+                  <input type="checkbox" checked="checked" />
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+
+              <div class="col-12">
+                <input type="submit" value="Login" class="btn btn-primary">
+              </div>
+              <div class="col-12 mb-4" align="center">
+                  <a href="/user_register">User Signup</a>
+              </div>
+
+            </div>
           </form>
-
+            {% endblock %}
         </div>
+      </div>
 
+      
+    </div>
+  </div> <!-- /.untree_co-section -->
+
+  <div class="site-footer">
+
+
+    <div class="container">
+
+{#      <div class="row">#}
+{#        <div class="col-lg-3 mr-auto">#}
+{#          <div class="widget">#}
+{#            <h3>About Us<span class="text-primary">.</span> </h3>#}
+{#            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>#}
+{#          </div> <!-- /.widget -->#}
+{#          <div class="widget">#}
+{#            <h3>Connect</h3>#}
+{#            <ul class="list-unstyled social">#}
+{#              <li><a href="#"><span class="icon-instagram"></span></a></li>#}
+{#              <li><a href="#"><span class="icon-twitter"></span></a></li>#}
+{#              <li><a href="#"><span class="icon-facebook"></span></a></li>#}
+{#              <li><a href="#"><span class="icon-linkedin"></span></a></li>#}
+{#              <li><a href="#"><span class="icon-pinterest"></span></a></li>#}
+{#              <li><a href="#"><span class="icon-dribbble"></span></a></li>#}
+{#            </ul>#}
+{#          </div> <!-- /.widget -->#}
+{#        </div> <!-- /.col-lg-3 -->#}
+{##}
+{#        <div class="col-lg-2 ml-auto">#}
+{#          <div class="widget">#}
+{#            <h3>Projects</h3>#}
+{#            <ul class="list-unstyled float-left links">#}
+{#              <li><a href="#">Web Design</a></li>#}
+{#              <li><a href="#">HTML5</a></li>#}
+{#              <li><a href="#">CSS3</a></li>#}
+{#              <li><a href="#">jQuery</a></li>#}
+{#              <li><a href="#">Bootstrap</a></li>#}
+{#            </ul>#}
+{#          </div> <!-- /.widget -->#}
+{#        </div> <!-- /.col-lg-3 -->#}
+{##}
+{#        <div class="col-lg-3">#}
+{#          <div class="widget">#}
+{#            <h3>Gallery</h3>#}
+{#            <ul class="instafeed instagram-gallery list-unstyled">#}
+{#              <li><a class="instagram-item" href="images/gal_1.jpg" data-fancybox="gal"><img src="images/gal_1.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#              <li><a class="instagram-item" href="images/gal_2.jpg" data-fancybox="gal"><img src="images/gal_2.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#              <li><a class="instagram-item" href="images/gal_3.jpg" data-fancybox="gal"><img src="images/gal_3.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#              <li><a class="instagram-item" href="images/gal_4.jpg" data-fancybox="gal"><img src="images/gal_4.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#              <li><a class="instagram-item" href="images/gal_5.jpg" data-fancybox="gal"><img src="images/gal_5.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#              <li><a class="instagram-item" href="images/gal_6.jpg" data-fancybox="gal"><img src="images/gal_6.jpg" alt="" width="72" height="72"></a>#}
+{#              </li>#}
+{#            </ul>#}
+{#          </div> <!-- /.widget -->#}
+{#        </div> <!-- /.col-lg-3 -->#}
+{##}
+{##}
+{#        <div class="col-lg-3">#}
+{#          <div class="widget">#}
+{#            <h3>Contact</h3>#}
+{#            <address>43 Raymouth Rd. Baltemoer, London 3910</address>#}
+{#            <ul class="list-unstyled links mb-4">#}
+{#              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>#}
+{#              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>#}
+{#              <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>#}
+{#            </ul>#}
+{#          </div> <!-- /.widget -->#}
+{#        </div> <!-- /.col-lg-3 -->#}
+{##}
+{#      </div> <!-- /.row -->#}
+
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>  Distributed By <a href="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
+          </div>
+        </div>
+      </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
-  </div>
 
-  <div class="container">
-    <div class="copyright">
-      &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-      Designed by <a href="{% static '/https://bootstrapmade.com/' %}">BootstrapMade</a>
-    </div>
-  </div>
-</footer><!-- End Footer -->
-     
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.animateNumber.min.js"></script>
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery.fancybox.min.js"></script>
+    <script src="/static/js/jquery.sticky.js"></script>
+    <script src="/static/js/aos.js"></script>
+    <script src="/static/js/custom.js"></script>
 
-      
-
-    <script src="{% static '/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-    <script src="{% static '/vendor/aos/aos.js' %}"></script>
-    <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static '/vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static '/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static '/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static '/vendor/php-email-form/validate.js' %}"></script>
-  
-    <!-- Template Main JS File -->
-    <script src="{% static '/js/main.js' %}"></script>
-   <!--- <script>
-      const signupForm = document.getElementById('signup-form');
-      const email = document.getElementById('email');
-      //const username = document.getElementById('username');
-      const password = document.getElementById('password');
-      //const confirmPassword = document.getElementById('confirm-password');
-      const emailError = document.getElementById('email-error');
-      //const usernameError = document.getElementById('username-error');
-      const passwordError = document.getElementById('password-error');
-      //const confirmPasswordError = document.getElementById('confirm-password-error');
-      const successMessage = document.getElementById('success-message');
-
-      signupForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          // Clear previous error messages
-          emailError.textContent = '';
-          usernameError.textContent = '';
-          passwordError.textContent = '';
-          confirmPasswordError.textContent = '';
-          successMessage.textContent = '';
-
-          // Validate email format (no uppercase letters)
-          const emailPattern = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-          if (!emailPattern.test(email.value)) {
-              emailError.textContent = 'Invalid email format (no uppercase letters)';
-              return;
-          }
-
-          // Validate username (at least 5 characters)
-          //if (username.value.length < 5) {
-              //usernameError.textContent = 'Username must be at least 5 characters';
-              //return;
-          //}
-
-          // Validate password (at least 8 characters, with complexity)
-          const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-          if (!passwordPattern.test(password.value)) {
-              passwordError.textContent = 'Password must contain at least one numeric digit, one uppercase letter, one lowercase letter, and one special character, and be at least 8 characters long';
-              return;
-          }
-
-          // Confirm password match
-          //if (password.value !== confirmPassword.value) {
-              //confirmPasswordError.textContent = 'Passwords do not match';
-              //return;
-          //}
-
-          // If all validations pass, show success message
-          successMessage.textContent = 'Registration successful!';
-      });
-      
-  </script>-->
-  {% if error_message %}
-  <script>
-      alert("{{ error_message }}");
-  </script>
-  {% endif %}
   </body>
-  
-  </html>
+
+  </html>
