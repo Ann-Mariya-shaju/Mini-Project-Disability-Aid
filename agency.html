@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration with Transport Agency Details</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #3498db;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+      margin-right: 15px;
+    }
+    select, input[type="number"], input[type="text"] {
+      width: calc(100% - 180px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 24px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .download-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .download-btn button {
+      width: auto;
+      margin: 0;
+    }
+    #concessionPass {
+      display: none;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Registration with Transport Agency Details</h1>
+    <form method="POST" id="registrationForm">
+        {% csrf_token %}
+        <label for="user">Select User:</label>
+        <br>
+        <select name="user" id="user">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="transportMode">Transport Mode:</label>
+        <br>
+        <select id="transportMode" required>
+          <option value="" selected disabled>Select Transport Mode</option>
+          <option value="bus">Bus</option>
+          <option value="train">Train</option>
+          
+  
+        </select>
+       <br>
+        <label for="fromDestination">From Destination:</label>
+        <input type="text" id="fromDestination" required>
+        <label for="toDestination">To Destination:</label>
+        <input type="text" id="toDestination" required>
+        <label for="distance">Distance (in km):</label>
+        <input type="number" id="distance" required>
+        <br><br>
+        <button type="submit">Register</button>
+      </form>
+     <br><br>
+
+
+       
+    {% if users %}
+    {% for user in users %}
+      <a href="{% url 'generate_concession_pass' agency_id=user.id %}" download="concession_pass_{{ user.username }}.pdf">
+        <button>Download Concession Pass for {{ user.username }}</button>
+      </a>
+    {% endfor %}
+  {% endif %}
+   </div>
+
+  <script>
+    // JavaScript remains unchanged as per your existing code
+    // ...
+  </script>
+</body>
+</html>

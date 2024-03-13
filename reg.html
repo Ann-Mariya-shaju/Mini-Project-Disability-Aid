@@ -1,0 +1,449 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Registration Form</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static '/img/favicon.png' %}" rel="icon">
+    <link href="{% static '/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static '/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static '/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+
+    <!-- Inline CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('signupimg.jpg'); /* Replace with your own image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .signup-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px; /* Increased padding for better visual appeal */
+            background-color: rgba(224, 232, 238, 0.322); /* Slightly transparent background */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Left-align labels and inputs */
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: rgb(16, 16, 16); /* White color for labels */
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333; /* Default color for input text */
+        }
+
+        .error-message {
+            color: #a21f08;
+            font-size: 12px;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-size: 12px;
+        }
+
+        .submit-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+   <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="{% static '/index.html' %}"><span></span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
+          <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>-->
+          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="index.html#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="registration.html" class="get-started-btn scrollto">Registration</a>
+    </div>
+  </header><!-- End Header -->
+
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="container" data-aos="fade-up">
+            <br><br><br><br>
+            <div class="signup-container">
+                <h2>Sign Up</h2>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <span id="email-error" class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <span id="username-error" class="error-message"></span>
+                        <div id="username-rules" style="font-size: 12px; color: #333;">
+                           <!--- Username rules:
+                            <ul>
+                                <li>Cannot start with a space</li>
+                                <li>Must be at least 4 characters long</li>
+                                <li>Special characters are not allowed</li>
+                            </ul>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <span id="password-error" class="error-message"></span>
+                        <span id="password-length-error" class="error-message"></span>
+                        <span id="password-complexity-error" class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <span id="confirm-password-error" class="error-message"></span>
+                        <span id="password-match-error" class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phonenumber">Phone Number:</label>
+                        <input type="tel" id="phonenumber" name="phonenumber" required>
+                        <span id="phonenumber-error" class="error-message"></span>
+                    </div>
+                   <!---- <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" required></textarea>
+                        <span id="address-error" class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="medical-certificate">Medical Certificate (JPG only):</label>
+                        <input type="file" id="medical-certificate" name="medical-certificate" accept=".jpg" required>
+                        <span id="medical-certificate-error" class="error-message"></span>
+                    </div>-->
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                    <span id="success-message" class="success-message"></span>
+                </form>
+                <p class="signup" style="color: rgba(255, 238, 0, 0.537);">Already have an account? Log in here. <a href="{% url 'login' %}" style="color: blue;">login</a></p>
+            </div>
+        </div>
+    </section><!-- Hero Section -->
+    <!-- End Hero -->
+
+    <!-- JavaScript imports and scripts -->
+    <script src="{% static '/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static '/vendor/aos/aos.js' %}"></script>
+    <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static '/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static '/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static '/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Real-time username validation script -->
+    <script>
+        // Function to update error message for the username field
+        function updateUsernameErrorMessage(message) {
+            const errorElement = document.getElementById('username-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to handle input in the username field
+        function handleUsernameInput() {
+            const username = document.getElementById('username').value;
+
+            // Check if the username starts with a space
+            if (username.startsWith(' ')) {
+                updateUsernameErrorMessage('Username cannot start with a space');
+                return;
+            }
+
+            // Check if the username is at least 4 characters long
+            if (username.length < 4) {
+                updateUsernameErrorMessage('Username must be at least 4 characters long');
+                return;
+            }
+
+            // Check if the username contains special characters
+            if (/[^a-zA-Z0-9]/.test(username)) {
+                updateUsernameErrorMessage('Special characters are not allowed in the username');
+                return;
+            }
+
+            // If all checks pass, clear the error message
+            updateUsernameErrorMessage('');
+        }
+
+        // Add input event listener to the username field
+        const usernameField = document.getElementById('username');
+        usernameField.addEventListener('input', handleUsernameInput);
+    </script>
+     <!--End real-time username validation script -->
+
+    <!-- Real-time phone number validation script--> 
+    <script>
+     
+    // Function to update error message for the phone number field
+    function updatePhoneNumberErrorMessage(message) {
+        const errorElement = document.getElementById('phonenumber-error');
+        errorElement.textContent = message;
+    }
+
+    // Function to handle input in the phone number field
+    function handlePhoneNumberInput() {
+        let phoneNumber = document.getElementById('phonenumber').value;
+
+        // Remove any non-digit characters from the input
+        phoneNumber = phoneNumber.replace(/\D/g, '');
+
+        // Check if the phone number is exactly 10 digits long
+        if (phoneNumber.length === 10) {
+            // Check if the phone number starts with 1, 2, 3, 4, or 5
+            if (['1', '2', '3', '4', '5'].includes(phoneNumber.charAt(0))) {
+                updatePhoneNumberErrorMessage('Phone number cannot start with 1, 2, 3, 4, or 5');
+            } else {
+                // If all checks pass, clear the error message
+                updatePhoneNumberErrorMessage('');
+            }
+        } else {
+            // If phone number does not have 10 digits, show an error
+            updatePhoneNumberErrorMessage('Phone number must be 10 digits long');
+        }
+
+        // Update the input field value with the sanitized phone number (maximum 10 digits)
+        document.getElementById('phonenumber').value = phoneNumber.substr(0, 10);
+    }
+
+    // Add input event listener to the phone number field
+    const phoneNumberField = document.getElementById('phonenumber');
+    phoneNumberField.addEventListener('input', handlePhoneNumberInput);
+   
+</script>
+    
+    <script>
+        // Function to update error message for the password field
+        function updatePasswordErrorMessage(message) {
+            const errorElement = document.getElementById('password-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to update error message for password length
+        function updatePasswordLengthErrorMessage(message) {
+            const errorElement = document.getElementById('password-length-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to update error message for password complexity
+        function updatePasswordComplexityErrorMessage(message) {
+            const errorElement = document.getElementById('password-complexity-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to handle input in the password field
+        function handlePasswordInput() {
+            const password = document.getElementById('password').value;
+
+            // Check if the password is at least 8 characters long
+            if (password.length < 8) {
+                updatePasswordErrorMessage('Password must be at least 8 characters long');
+                updatePasswordLengthErrorMessage('Password must be at least 8 characters long');
+                return;
+            } else {
+                updatePasswordLengthErrorMessage('');
+            }
+
+            // Check for password complexity (e.g., at least one uppercase letter, one lowercase letter, and one digit)
+            if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(password)) {
+                updatePasswordComplexityErrorMessage('Password must contain at least one uppercase letter, one lowercase letter, and one digit');
+                return;
+            } else {
+                updatePasswordComplexityErrorMessage('');
+            }
+
+            // If all checks pass, clear the error message
+            updatePasswordErrorMessage('');
+        }
+
+        // Add input event listener to the password field
+        const passwordField = document.getElementById('password');
+        passwordField.addEventListener('input', handlePasswordInput);
+    </script>
+    <!-- End real-time password validation script -->
+
+    <!-- Real-time confirm password validation script -->
+    <!--<script>
+        // Function to update error message for the confirm password field
+        function updateConfirmPasswordErrorMessage(message) {
+            const errorElement = document.getElementById('confirm-password-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to update error message for password match
+        function updatePasswordMatchErrorMessage(message) {
+            const errorElement = document.getElementById('password-match-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to handle input in the confirm password field
+        function handleConfirmPasswordInput() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Check if the passwords match
+            if (password !== confirmPassword) {
+                updateConfirmPasswordErrorMessage('Passwords do not match');
+                updatePasswordMatchErrorMessage('Passwords do not match');
+                return;
+            } else {
+                updatePasswordMatchErrorMessage('');
+            }
+
+            // If passwords match, clear the error message
+            updateConfirmPasswordErrorMessage('');
+        }
+
+        // Add input event listener to the confirm password field
+        const confirmPasswordField = document.getElementById('confirm-password');
+        confirmPasswordField.addEventListener('input', handleConfirmPasswordInput);
+    </script>
+     End real-time confirm password validation script -->
+
+    <!-- Real-time address validation script -->
+   <!--- <script>
+        // Function to update error message for the address field
+        function updateAddressErrorMessage(message) {
+            const errorElement = document.getElementById('address-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to handle input in the address field
+        function handleAddressInput() {
+            const address = document.getElementById('address').value;
+
+            // Check if the address field is empty
+            if (address.trim() === '') {
+                updateAddressErrorMessage('Please enter your address');
+                return;
+            }
+
+            // If address is provided, clear the error message
+            updateAddressErrorMessage('');
+        }
+
+        // Add input event listener to the address field
+        const addressField = document.getElementById('address');
+        addressField.addEventListener('input', handleAddressInput);
+    </script>-->
+    <!-- End real-time address validation script -->
+
+    <!-- Real-time medical certificate validation script -->
+    <!--<script>
+        // Function to update error message for the medical certificate field
+        function updateMedicalCertificateErrorMessage(message) {
+            const errorElement = document.getElementById('medical-certificate-error');
+            errorElement.textContent = message;
+        }
+
+        // Function to handle input in the medical certificate field
+        function handleMedicalCertificateInput() {
+            const medicalCertificate = document.getElementById('medical-certificate').value;
+            const allowedExtensions = /(\.jpg)$/i;
+
+            // Check if a file is selected
+            if (!medicalCertificate) {
+                updateMedicalCertificateErrorMessage('Please upload a medical certificate (JPG only)');
+                return;
+            }
+
+            // Check if the file has a valid extension
+            if (!allowedExtensions.exec(medicalCertificate)) {
+                updateMedicalCertificateErrorMessage('Only JPG files are allowed');
+                return;
+            }
+
+            // If all checks pass, clear the error message
+            updateMedicalCertificateErrorMessage('');
+        }
+
+        // Add input event listener to the medical certificate field
+        const medicalCertificateField = document.getElementById('medical-certificate');
+        medicalCertificateField.addEventListener('input', handleMedicalCertificateInput);
+    </script>-->
+    <!-- End real-time medical certificate validation script -->
+
+    <!-- Template Main JS File -->
+
+    <script src="{% static '/js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f5f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #f0f5f9;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+        }
+        .page-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #logout-link {
+            background-color: #80a4c2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        #logout-link:hover {
+            background-color: #658da9;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            color: #fff;
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 10px;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="page-title">Admin Dashboard</h1>
+        <a href="{% url 'logout' %}" class="btn btn-primary" id="logout-link">Logout</a>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="{% url 'admindashboard' %}">Users</a></li>
+            <li><a href="{% url 'doctor' %}">Hospital</a></li>
+            <li><a href="{% url 'doctor_view' %}">Doctor View</a></li>
+            <li><a href="{% url 'doctor_appointment' %}">Doctor Appointment</a></li>
+            <li><a href="{% url 'appointment_view' %}">Appointment View</a></li>
+            <li><a href="{% url 'agency' %}">Agency</a></li>
+            
+
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h2 class="page-title mt-4">User List</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Phone Number</th>
+                        <th>Medical Certificate</th>
+                        <th>Guardian Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                       
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.phone_number }}</td>
+                        <td>{{ user.medical_certificate }}</td>
+                        <td>{{ user.guardian_type }}</td>
+                        <td>
+                            {% if user.is_active %}
+                                Active
+                            {% else %}
+                                Deactivated
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.is_active %}
+                                <form method="post" action="{% url 'deactivate_user' user.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Deactivate</button>
+                                </form>
+                            {% else %}
+                                <form method="post" action="{% url 'activate_user' user.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Activate</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function confirmBlock(username, userId) {
+            if (confirm(`Do you want to block ${username}?`)) {
+                window.location.href = `/block_user/${userId}`;
+            }
+        }
+        
+    function updateDoctors() {
+        var userSelect = document.getElementById("user");
+        var doctorSelect = document.getElementById("doctor");
+
+        var userId = userSelect.value;
+
+        if (userId) {
+            // Perform an AJAX request to get doctors associated with the selected user
+            fetch(`/get_user_doctors/${userId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear existing options
+                    doctorSelect.innerHTML = '<option value="" selected disabled>Select a doctor</option>';
+                    data.forEach(doctor => {
+                        var option = document.createElement("option");
+                        option.value = doctor.id;
+                        option.textContent = doctor.name;
+                        doctorSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            // If no user is selected, reset the doctor dropdown
+            doctorSelect.innerHTML = '<option value="" selected disabled>Select a doctor</option>';
+        }
+    }
+    </script>
+</body>
+</html>
