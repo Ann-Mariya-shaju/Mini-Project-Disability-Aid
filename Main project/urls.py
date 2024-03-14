@@ -43,6 +43,7 @@ urlpatterns = [
     path('edit_panchayat/<tid>', views.edit_panchayat),
     path('edit_panchayat_post/<tid>', views.edit_panchayat_post),
     path('delete_panchayat/<tid>', views.delete_panchayat),
+    path('admin_view_feedback', views.admin_view_feedback),
 
                                     # transport
 
@@ -51,4 +52,30 @@ urlpatterns = [
     path('view_user_request_status', views.view_user_request_status),
     path('approve_concession/<tid>', views.approve_concession),
     path('reject_concession/<tid>', views.reject_concession),
+
+
+                    ##  user
+    path('user_register', views.user_register),
+    path('user_register_post', views.user_register_post),
+    path('user_home', views.user_home),
+    path('user_view_transport', views.user_view_transport),
+    path('user_add_concession/<id>', views.user_add_concession),
+    path('user_Add_concession_post/<id>', views.user_Add_concession_post),
+    path('user_view_concession_request', views.user_view_concession_request),
+    path('user_view_hospital', views.user_view_hospital),
+    path('user_view_panchayat', views.user_view_panchayat),
+    path('user_send_Request_post/<id>', views.user_send_Request_post),
+    path('user_send_pension_request/<id>', views.user_send_pension_request),
+    path('user_send_feedback', views.user_send_feedback),
+    path('user_send_feedback_post', views.user_send_feedback_post),
+    path('user_view_pension_logs', views.user_view_pension_logs),
+
+
+    path('panchayat_home', views.panchayat_home ),
+    path('panchayat_view_requests', views.panchayat_view_requests ),
+    path('pan_appr_request/<id>', views.pan_appr_request ),
+    path('pan_rej_request/<id>', views.pan_rej_request ),
+    path('panchayat_view_appr_requests', views.panchayat_view_appr_requests ),
+    path('panchayat_grant_pension/<id>', views.panchayat_grant_pension ),
+    path('panchayat_grant_pension_post/<id>', views.panchayat_grant_pension_post ),
 ]
