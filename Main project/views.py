@@ -26,6 +26,12 @@ def login_post(request):
         if res[0].user_type == 'transport':
             request.session['lid'] = res[0].id
             return redirect('/transport_home')
+        if res[0].user_type == 'user':
+            request.session['lid'] = res[0].id
+            return redirect('/user_home')
+        if res[0].user_type == 'panchayat':
+            request.session['lid'] = res[0].id
+            return redirect('/panchayat_home')
         else:
             return HttpResponse("<script>alert('not allowed'); window.location='/'</script>")
     else:
@@ -417,6 +423,12 @@ def delete_panchayat(request, tid):
         Login.objects.get(id=tid).delete()
         return HttpResponse("<script>alert('deleted'); window.location='/view_panchayat#aaa'</script>")
 
+def admin_view_feedback(request):
+    res=Feedback.objects.all()
+    return  render(request, "admin/view_feedback.html", {'data':res})
+
+
+
 
 def transport_home(request):
     request.session['head'] = ''
@@ -459,3 +471,152 @@ def reject_concession(request, tid):
         return HttpResponse("<script>alert('rejected'); window.location='/view_user_request#aaa'</script>")
 
 
+######          USER
+
+def user_register(request):
+    return render(request, "User/register.html")
+def user_register_post(request):
+    file=request.FILES['f1']
+    name=request.POST['t1']
+    email=request.POST['t2']
+    phone=request.POST['t3']
+    place=request.POST['t4']
+    post=request.POST['t5']
+    pin=request.POST['t6']
+    password=request.POST['t7']
+    d=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    fs=FileSystemStorage()
+    fs.save(r"F:\DisabilityAid\disability_aid\static\pics\\" + d + ".jpg", file)
+    path="/static/pics" +  d + ".jpg"
+
+    obj=Login()
+    obj.username=email
+    obj.password=password
+    obj.user_type="user"
+    obj.save()
+
+    obj2=User()
+    obj2.name=name
+    obj2.photo=path
+    obj2.email=email
+    obj2.phone=phone
+    obj2.place=place
+    obj2.post=post
+    obj2.pin=pin
+    obj2.LOGIN=obj
+    obj2.save()
+    return HttpResponse("<script>alert('Registered'); window.location='/'</script>")
+
+
+
+
+def user_home(request):
+    return render(request, "User/index.html")
+
+
+def user_view_transport(request):
+    request.session['head'] = 'View Transport'
+    if request.session == '':
+        return HttpResponse("<script>alert('please login'); window.location='/'</script>")
+    else:
+        trs = Transport.objects.all()
+        return render(request, 'User/view transport.html', {'data': trs})
+
+def user_add_concession(request, id):
+    return render(request, "User/add_concession.html", {'id':id})
+def user_Add_concession_post(request, id):
+    type=request.POST['textfield']
+    from_place=request.POST['textfield4']
+    to_place=request.POST['textfield5']
+    obj=Concession()
+    obj.concession=type
+    obj.from_place=from_place
+    obj.to_place=to_place
+    obj.status="pending"
+    obj.USER=User.objects.get(LOGIN_id=request.session['lid'])
+    obj.TRANSPORT_id=id
+    obj.save()
+    return HttpResponse("<script>alert('Request sent'); window.location='/user_view_transport'</script>")
+
+def user_view_concession_request(request):
+    res=Concession.objects.filter(USER__LOGIN_id=request.session['lid'])
+    return render(request, "User/view_concession_request_status.html", {'data':res})
+
+
+def user_view_hospital(request):
+    request.session['head'] = 'View Hospital'
+    if request.session == '':
+        return HttpResponse("<script>alert('please login'); window.location='/'</script>")
+    else:
+        trs = Hospital.objects.all()
+        return render(request, 'User/view hospital.html', {'data': trs})
+def user_send_feedback(request):
+    return render(request, "User/send_feedback.html")
+def user_send_feedback_post(request):
+    feed=request.POST['textfield']
+    obj=Feedback()
+    obj.date=datetime.datetime.now().date()
+    obj.feedback=feed
+    obj.USER=User.objects.get(LOGIN_id=request.session['lid'])
+    obj.save()
+    return HttpResponse("<script>alert('Feedback sent'); window.location='/user_send_feedback#aaa'</script>")
+def user_view_panchayat(request):
+    request.session['head'] = 'View Panchayat'
+    if request.session == '':
+        return HttpResponse("<script>alert('please login'); window.location='/'</script>")
+    else:
+        trs = Panchayat.objects.all()
+        return render(request, 'User/view panchayat.html', {'data': trs})
+
+def user_send_pension_request(request, id):
+    return render(request, "User/pension.html", {'id':id})
+def user_send_Request_post(request, id):
+    file=request.FILES['textfield5']
+    d=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    fs=FileSystemStorage()
+    fs.save(r"F:\DisabilityAid\disability_aid\static\pics\\" + d + ".pdf", file)
+    path = "/static/pics" + d + ".pdf"
+    obj=PEnsion()
+    obj.file=path
+    obj.USER=User.objects.get(LOGIN_id=request.session['lid'])
+    obj.date=datetime.datetime.now().date()
+    obj.PANCHAYAT_id=id
+    obj.status="pending"
+    obj.save()
+    return HttpResponse("<script>alert('Requested'); window.location='/user_view_panchayat'</script>")
+
+def user_view_pension_logs(request):
+    res=Pension_logs.objects.filter(PENSION__USER__LOGIN_id=request.session['lid'])
+    return render(request, "User/pension_logs.html", {'data':res})
+
+
+##################              PANCHAYT
+def panchayat_home(request):
+    return render(request, "panchayath/index.html")
+
+def panchayat_view_requests(request):
+    res=PEnsion.objects.filter(PANCHAYAT__LOGIN_id=request.session['lid'], status="pending")
+    return render(request, "panchayath/view user request.html", {'data':res})
+
+def pan_appr_request(request, id):
+    PEnsion.objects.filter(id=id).update(status="Approved")
+    return HttpResponse("<script>alert('Accepted'); window.location='/panchayat_view_requests'</script>")
+
+def pan_rej_request(request, id):
+    PEnsion.objects.filter(id=id).update(status="Rejected")
+    return HttpResponse("<script>alert('Accepted'); window.location='/panchayat_view_requests'</script>")
+
+def panchayat_view_appr_requests(request):
+    res=PEnsion.objects.filter(PANCHAYAT__LOGIN_id=request.session['lid'], status="Approved")
+    return render(request, "panchayath/view approved request.html", {'data':res})
+def panchayat_grant_pension(request, id):
+    return render(request, "panchayath/grant_pension.html", {'id':id})
+def panchayat_grant_pension_post(request, id):
+    amt=request.POST['textfield']
+    obj=Pension_logs()
+    obj.date=datetime.datetime.now().date()
+    obj.time=datetime.datetime.now().strftime("%H:%M")
+    obj.amount=amt
+    obj.PENSION_id=id
+    obj.save()
+    return HttpResponse("<script>alert('Pension added'); window.location='/panchayat_view_appr_requests#aaa'</script>")
