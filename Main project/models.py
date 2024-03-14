@@ -59,3 +59,21 @@ class Concession(models.Model):
     status = models.CharField(max_length=100, default=1)
     USER = models.ForeignKey(User, on_delete=models.CASCADE)
     TRANSPORT = models.ForeignKey(Transport, on_delete=models.CASCADE)
+
+class PEnsion(models.Model):
+    date=models.CharField(max_length=100, default="")
+    file=models.CharField(max_length=100)
+    status=models.CharField(max_length=100)
+    USER = models.ForeignKey(User, on_delete=models.CASCADE)
+    PANCHAYAT = models.ForeignKey(Panchayat, on_delete=models.CASCADE)
+
+class Feedback(models.Model):
+    date=models.CharField(max_length=100, default="")
+    feedback=models.CharField(max_length=100)
+    USER = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Pension_logs(models.Model):
+    date=models.CharField(max_length=100, default="")
+    time=models.CharField(max_length=100, default="")
+    amount=models.CharField(max_length=100, default="")
+    PENSION = models.ForeignKey(PEnsion, on_delete=models.CASCADE)
