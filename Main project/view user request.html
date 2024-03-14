@@ -1,0 +1,34 @@
+{% extends 'panchayath/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<table class="table table-bordered table-primary ">
+  <tr class="bg-primary border border-white text-white">
+    <th scope="col">#</th>
+    <th scope="col">USER INFO</th>
+    <th scope="col">DATE</th>
+    <th scope="col">FILE</th>
+    <th scope="col">APPROVE</th>
+    <th scope="col">REJECT</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.USER.name }}<BR>Ph : {{ i.USER.name }}</td>
+    <td>{{ i.date }}</td>
+    <td><a href="{{ i.office }}" target="_blank">View File</a> </td>
+    <td align="center"><a class="btn btn-success py-3 px-5" href="/pan_appr_request/{{ i.id }}#aaa" onclick="return confirm('Are you sure?')">approve</a></td>
+    <td align="center"><a class="btn btn-danger py-3 px-5" href="/pan_rej_request/{{ i.id }}#aaa" onclick="return confirm('Are you sure?')">reject</a></td>
+{#    <td><a href="/neurologist_approve/{{ i.LOGIN.id }}">block</a></td>#}
+  </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+{% endblock %}
