@@ -1,0 +1,33 @@
+{% extends 'User/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<table class="table table-bordered table-primary ">
+  <tr class="bg-primary border border-white text-white">
+    <th scope="col">#</th>
+    <th scope="col">Agency Name</th>
+    <th scope="col">Concession Type</th>
+    <th scope="col">From</th>
+    <th scope="col">To</th>
+    <th scope="col">Status</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.TRANSPORT.name }}</td>
+    <td>{{ i.concession }}</td>
+    <td>{{ i.from_place }}</td>
+    <td>{{ i.to_place }}</td>
+    <td>{{ i.status }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+{% endblock %}
